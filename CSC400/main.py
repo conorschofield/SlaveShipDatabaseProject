@@ -1,4 +1,4 @@
-from mysql.connector import (connection)
+from mysql.connector
 from mysql.connector import errorcode
 from datetime import datetime
 import json
@@ -36,7 +36,7 @@ COMMENTS = 30
 def makeConnection():
     try:
         print("HELO")
-        cnx = connection.MySQLConnection(user='root',
+        cnx = mysql.connector.connect(user='root',
                                         password='STr1pes250**',
                                         host='localhost',
                                         database='History')
@@ -57,7 +57,7 @@ def makeConnection():
 #    check = "SELECT * FROM " + tableName + ";"
 #    cursor.execute(check)
 #    remaining_rows = cursor.fetchall()
-#    
+#
 #    if any(row[column] == value for row in remaining_rows):
 #        return True # This is a resight
 #    return False
@@ -95,14 +95,14 @@ def getTopObsv(cursor):
 #def writeObsv(cnx, cursor, row, ID):
 #    statement = ("INSERT INTO Observations VALUES ("
 #                + str(ID) + ", "
-#                + "'testEmail', "     # email 
+#                + "'testEmail', "     # email
 #                + row[SEX] + ", '"                # gender
 #                + str(getDate(row[DATE]))+ "', "                # date
 #                + row[MOLT] + ", '"                # molt
 #                + row[COMMENTS].replace("'", "") + "', "                # comments
 #                + row[AGE] + ", "                # Age
 #                + row[YEAR] + ", "                # year
-#                + row[LOC] + ", 1)")              # SLOCode 
+#                + row[LOC] + ", 1)")              # SLOCode
 #    print(statement)
 #    try:
 #        cursor.execute(statement)
@@ -164,8 +164,8 @@ def runQuery(cursor, query):
 #                + csvRow[MARK].replace(" ", "") + ", "        # mark
 #                + csvRow[MARKPOS] + ", '"          # Year
 #                + str(getDate(csvRow[2]))+ "', "          # date
-#                + csvRow[YEAR] + ", " 
-#                + str(sealID) + ");")        # 
+#                + csvRow[YEAR] + ", "
+#                + str(sealID) + ");")        #
 #    print(statement)
 #    try:
 #        cursor.execute(statement)
@@ -235,7 +235,7 @@ def runQuery(cursor, query):
 #                + getColor(csvRow[whichTag][1]) + ", "          # TODO write getTagColor(row[whichTag][0])
 #                + csvRow[TAGPOS] + ", '"
 #                + str(getDate(csvRow[2])) + "', "
-#                + str(sealID) + ");")        # 
+#                + str(sealID) + ");")        #
 #    print(statement)
 #    try:
 #        cursor.execute(statement)
@@ -247,7 +247,7 @@ def runQuery(cursor, query):
 #def pushMeasurement(cnx, cursor, obsID, row):
 #    newID = getTopMeasurement(cursor) + 1
 #
-#    statement = "INSERT INTO Measurements VALUES ({:d}, {:d}, {:s}, {:s}, {:s}, {:s}, {:s});".format(newID, obsID, 
+#    statement = "INSERT INTO Measurements VALUES ({:d}, {:d}, {:s}, {:s}, {:s}, {:s}, {:s});".format(newID, obsID,
 #            row[AXGIRTH], row[MASS], row[TARE], row[CRVLENGTH], row[STLENGTH])
 #    pushQuery(cnx, cursor, statement)
 #
@@ -264,7 +264,7 @@ def runQuery(cursor, query):
 #    statement = ("UPDATE Tags SET "
 #            + "TagSeal = {:d} WHERE TagSeal = {:d};").format(newSeal, tag)
 #    pushQuery(cnx, cursor, statement);
-#    
+#
 #
 #def updateObserveMark(cnx, cursor, old, new):
 #    print("Update Observe Mark ", old, " to ", new)
@@ -382,7 +382,7 @@ def runQuery(cursor, query):
 
 def main():
     cnx = makeConnection()
-    cursor = cnx.cursor(buffered=True)
+    cursor = cnx.cursor()
     print("HELL YEAH!")
     getTopObsv(cursor)
     #filename = raw_input("Give file name: ")
@@ -391,7 +391,7 @@ def main():
     #y = json.loads(line)
     xls = pd.ExcelFile("HCA.xlsx")
     for sheet in xls.sheet_names:
-        df = pd.read_excel("HCA.xlsx", sheet_name=sheet, index_col=0, 
+        df = pd.read_excel("HCA.xlsx", sheet_name=sheet, index_col=0,
                 skiprows=1)
         print(df.iloc[0:1])
     #df_hca = pd.read_excel('HCA.xlsx', index_col=0)

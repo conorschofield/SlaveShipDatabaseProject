@@ -1,4 +1,5 @@
-from mysql.connector import (connection)
+import mysql.connector
+from mysql.connector import connection
 from mysql.connector import errorcode
 from datetime import datetime
 import string
@@ -13,11 +14,12 @@ exceptions = []
 def makeConnection():
     try:
         print("HELO")
-        cnx = connection.MySQLConnection(user='root',
-                                        password='STr1pes250**',
+        cnx = mysql.connector.connect(user='root',
+                                        password='SeniorProject2021',
                                         host='localhost',
-                                        database='History')
+                                        database='SeniorProject')
         print("YO")
+        return cnx
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("Something is wrong with your user name or password")
@@ -26,6 +28,7 @@ def makeConnection():
         else:
             print(err)
     else:
+        print("connection")
         return cnx
 
 ## takes a table name to search, a value, and a column to find it in
@@ -34,7 +37,7 @@ def makeConnection():
 #    check = "SELECT * FROM " + tableName + ";"
 #    cursor.execute(check)
 #    remaining_rows = cursor.fetchall()
-#    
+#
 #    if any(row[column] == value for row in remaining_rows):
 #        return True # This is a resight
 #    return False
@@ -72,14 +75,14 @@ def get_captors(cursor):
 #def writeObsv(cnx, cursor, row, ID):
 #    statement = ("INSERT INTO Observations VALUES ("
 #                + str(ID) + ", "
-#                + "'testEmail', "     # email 
+#                + "'testEmail', "     # email
 #                + row[SEX] + ", '"                # gender
 #                + str(getDate(row[DATE]))+ "', "                # date
 #                + row[MOLT] + ", '"                # molt
 #                + row[COMMENTS].replace("'", "") + "', "                # comments
 #                + row[AGE] + ", "                # Age
 #                + row[YEAR] + ", "                # year
-#                + row[LOC] + ", 1)")              # SLOCode 
+#                + row[LOC] + ", 1)")              # SLOCode
 #    print(statement)
 #    try:
 #        cursor.execute(statement)
@@ -135,7 +138,7 @@ def runQuery(cursor, query):
 
 
 def add_captor(cnx, cursor, captor, ident, row):
-    statement = ("INSERT INTO Captor VALUES (%s, '%s');" % (ident, captor))        # 
+    statement = ("INSERT INTO Captor VALUES (%s, '%s');" % (ident, captor))        #
     print(statement)
     try:
         cursor.execute(statement)
@@ -157,19 +160,20 @@ def add_location(cnx, cursor, location, ident, row):
         #exit(1)
 
 
-def add_stat(cnx, cursor, row, rn):
+def add_stat(cnx, cursor, row):
+    total = int(row["men"]) + int(row["women"]) + int(row["boys"]) + int(row["girls"])
     statement = ("INSERT INTO SlaveStats VALUES ('%s', %s, %s, %s, %s, %s, %s);"
-            % (rn,
+            % (row["key"],
                 row["men"],
                 row["women"],
                 row["boys"],
                 row["girls"],
                 0,
-                -1)) #TODO this is going to take some tinkering
-    print(statement)
+                total)) #TODO this is going to take some tinkering
     try:
         cursor.execute(statement)
         cnx.commit()
+        print(statement)
     except mysql.connector.Error as err:
         write_ex(f, row, err)
         #print("SLAVES#################################################")
@@ -177,29 +181,29 @@ def add_stat(cnx, cursor, row, rn):
         #print(err)
         #exit(1)
 
-def add_case(cnx, cursor, row, rn, captor, loc):
-    statement = ("INSERT INTO Cases VALUES " +
-                "(%d, '%s', %s, '%s', %s, %s, '%s', '%s', '%s', '%s', %s, %s,'%s');" 
+def add_case(cnx, cursor, row, captor, loc):
+    statement = ("INSERT INTO Cases (Uniq, RedNumber, Volume, StartPage, EndPage, CaseN, Court, Mixed, Register, Captor, Location, Notes, ) VALUES " +
+                "(%s, '%s', %d, %d, %d, '%s', '%s', '%s', '%s', %d, %d, '%s');"
                 % (row["key"],
-                    str(rn),
-                    str(row["volume"]),
-                    str(row["red number"]),
-                    str(row["start page"]),
-                    str(row["end page"]),
-                    str(row["case (ship)"]),
-                    str(row["court"]),
-                    str(row["mixed commission?"]),
-                    str(row["register?"]),
-                    str(captor),
-                    str(loc),
+                    (row["red number"]),
+                    (row["vol."]),
+                    (row["start page"]),
+                    (row["end page"]),
+                    (row["case (ship)"]),
+                    (row["court"]),
+                    (row["mixed commission?"]),
+                    (row["register?"]),
+                    (captor),
+                    (loc),
                     row["notes"]))
    # statement = ("INSERT INTO Cases VALUES " +
-   #             "('%s', '%s', '%s')" % 
+   #             "('%s', '%s', '%s')" %
    #             (str(rn),
    #             str(-1),
    #             str(row["Red number"])))
-    print(statement)
+    #print(statement)
     try:
+        print(statement)
         cursor.execute(statement)
         cnx.commit()
     except mysql.connector.Error as err:
@@ -211,7 +215,7 @@ def add_case(cnx, cursor, row, rn, captor, loc):
 # this function writes an exception to output csv
 def write_ex(f, ex, err):
     #write out issues
-    f.write("volume, start page , Case(Ship), Court, Red Number, Mixed, Date of Adjudication, " + 
+    f.write("volume, start page , Case(Ship), Court, Red Number, Mixed, Date of Adjudication, " +
             "Date of Capture, Capturing Ship/Captor, Place of Capture, Number of Slaves," +
             "Men, Women, Boys, Girls, Register?, Notes, error\n")
     f.write("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s\n" %
@@ -250,20 +254,26 @@ def main():
     key = 1
 
     # make connection to database
-    cnx = makeConnection()
-    cursor = cnx.cursor(buffered=True)
-    
+    mydb = mysql.connector.connect(
+      host="localhost",
+      user="root",
+      password="SeniorProject2021",
+      database="SeniorProject"
+    )
+    cursor = mydb.cursor()
+
     # begin parsing data
-    xls = pd.ExcelFile("test.xlsx")
+    xls = pd.ExcelFile("HCA35_Index_clean.xlsx")
     for sheet in xls.sheet_names:
         volume += 1
         print("new sheet")
-        df = pd.read_excel("test.xlsx", sheet_name=sheet, 
-                    skiprows=1)
+        df = pd.read_excel("HCA35_Index_clean.xlsx")
         df.fillna(0, inplace=True)
         df.columns = map(str.lower, df.columns)
         df.columns = map(str.rstrip, df.columns)
         f.write(str(list(df.iloc[0].keys())) + "\n")
+
+        print(df.iloc[0].keys())
         for i in range (len(df)):
             # get the next row in file
             row = df.iloc[i]
@@ -271,27 +281,29 @@ def main():
             row["key"] = key
             key += 1
             print("new row")
-    
+
             # check if Captor has been seen
             if (row["capturing ship/captor"] not in captors):
                 captors.append(row["capturing ship/captor"])
-                add_captor(cnx, cursor, row["capturing ship/captor"], len(captors), row)
+                add_captor(mydb, cursor, row["capturing ship/captor"], len(captors), row)
             # check if Location has been seen
             if (row["place of capture"] not in locations):
                 locations.append(row["place of capture"])
-                add_location(cnx, cursor, row["place of capture"], len(locations), row)
-    
+                add_location(mydb, cursor, row["place of capture"], len(locations), row)
+
             # make compound red number
             # unnecessary, I changed the key values of the data base
-            rn = str(row["red number"]).translate(str.maketrans('', '', string.punctuation))
-    
-            # add to SlaveStats
-            add_stat(cnx, cursor, row, key)
-    
+            #rn = str(row["red number"]).translate(str.maketrans('', '', string.punctuation))
+
+
             # add to Cases
-            add_case(cnx, cursor, row, rn, 
-                    int(captors.index(row["capturing ship/captor"])+1), 
+            add_case(mydb, cursor, row,
+                    int(captors.index(row["capturing ship/captor"])+1),
                     int(locations.index(row["place of capture"])+1))
+
+            # add to SlaveStats
+            add_stat(mydb, cursor, row)
+
             if(len(exceptions) != 0):
                 print("BITCHINNNNNNNNNNN")
         #for (ex, err, volume) in exceptions:
@@ -306,7 +318,7 @@ def main():
     #get_captors(cursor)
     #xls = pd.ExcelFile("HCA.xlsx")
     #for sheet in xls.sheet_names:
-    #    df = pd.read_excel("HCA.xlsx", sheet_name=sheet, index_col=0, 
+    #    df = pd.read_excel("HCA.xlsx", sheet_name=sheet, index_col=0,
     #            skiprows=1)
         #print(df.iloc[0:1])
     #df_hca = pd.read_excel('HCA.xlsx', index_col=0)
@@ -314,7 +326,8 @@ def main():
     print(len(exceptions))
     #f = open("exceptions.txt", "w")
     #f.write(str(list(row.keys())) + "")
-    f.close()
-    cnx.close()
+    #f.close()
+    #cnx.close()
+
 if __name__ == '__main__':
     main()
