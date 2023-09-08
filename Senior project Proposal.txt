@@ -1,0 +1,18 @@
+Senior project Proposal:
+
+stuctually the same 
+CSC 491 responsibilties: senior project proposal 2-page: part 1 title, name of student, in single paragraph: problem discription, (talk about history course, fact that there is electronic recond of ships, want students to be able to search through database) pt2: what are we building? we are building web-based thing pt3: time frame on when things will get done. set some major milestones in para or bulletpoint form, some break point done at end of winter, project done in spring. 
+second page: 4 things to certify that projects meets education requirements: 1-2 short sentences for each thing: background research: (related work, what libraries do we need to know, also requires historical understanding of subject matter, things you had to learn or wound up learning). independence: I am responsible for my part of the project, creativilty: why is this software new/unique, ownership: designate the 'customer' for this project.
+
+1.5 is core project without OCR (what hopper wants may be compleleted fast )
+2.0 is thing with streach goal of OCR
+
+wants meeting where we show what the things look like right now: on top of hoppers requirements: try to do OCR: searchable vs readable only need to find a few keywords? streach goal to make tool to fix whole pages of OCR. possibility of a map. Dehktyar really wants OCR lol.
+
+
+a) deploy on server v.075
+b) improve search form -dont take too much time date field improvement v.9 dates are stored as text options: day/month/yr split 
+c) set up for adding images to search page v1
+v2.0
+d) investigate OCR package.
+e) analytics dashboard i)mapping time-sensitive (give students tool to drop pin on map)? ii) anaylsis ask hopper for useful questions "change in language over time" iii) stats dash

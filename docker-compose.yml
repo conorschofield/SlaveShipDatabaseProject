@@ -1,0 +1,68 @@
+version: '2.2'
+
+services:
+  slave_ship_db:
+    image: mysql:8
+    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
+    # (this is just an example, not intended to be a production configuration)
+    # command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    user: "1000:1000"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    # Changes from default SQL mode:
+    # - Allow zero dates
+    # - Allow dates with zero month/day
+    # - Allow invalid dates, because MySQL rejects Feburary 29th, 1851 which is in the data set.
+    command: '--sql-mode="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,ALLOW_INVALID_DATES"'
+    # Healthcheck
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    # NOTE: We don't use volumes for now. This means our service isn't persisting any data.
+    # For now, this is OK, and removes a lot of sources of headache since it's nice to just
+    # recreate the DB when needed.
+    #volumes:
+    #  - "./db-data:/var/lib/mysql"
+  setup_db:
+    build: excel-import
+    command: ["python", "./betterimport.py", "/case-images"]
+    depends_on:
+      slave_ship_db:
+        condition: service_healthy
+    environment:
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_HOST: slave_ship_db
+      DB_PORT: 3306
+      DB_NAME: SeniorProject
+    restart: "no"
+    volumes:
+      - "./case-images:/case-images"
+  nginx:
+    build:
+      context: frontend
+      dockerfile: Dockerfile.prod
+    # Proxies the frontend and backend
+    ports:
+      - 3000:3000
+      - 4000:3000
+    volumes:
+      - "./frontend/nginx-production.conf:/etc/nginx/nginx.conf:ro"
+      - "./case-images:/case-images"
+    # NGINX will complain if the backend is not already started.
+    depends_on:
+      backend:
+        condition: service_healthy
+  backend:
+    build: backend
+    healthcheck:
+      test: ["CMD", "wget", "http://backend:4000/api", "-O", "/dev/null"]
+      timeout: 1s
+      retries: 5
+    environment:
+      DB_HOST: slave_ship_db
+    depends_on:
+      slave_ship_db:
+        condition: service_healthy

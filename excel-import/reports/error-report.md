@@ -1,0 +1,383 @@
+# HCA 35 Import Report
+
+## Errors or other interesting tidbits I noticed while looking through the data
+
+- Some notes
+    - HCA 35, Volume 17, pages 230-241 ("Ceres") - some of the columns appear to be shifted wrongly. Needs a manual review.
+- Courts that need another look - what do these mean?
+    - 1 Bahamasone
+    - 1 BahamasVice
+    - 1 BahamasEnumeration
+- Court cell that contains multiple courts, do we want to handle this?
+    - 2 Cape of Good Hope, Havana, Jamaica, Sierra Leone
+    - 2 Sierra Leone, Saint Helena
+    - 1 Mauritus/ Cape of Good Hope
+
+
+## Errors detected on import
+
+- Transcription problem: validation failed for adjudication date
+    - Location: row #12 of volume #80 in sheet "vol80" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Adjudication
+    - Explanation:
+        - validation failure: year 18862 in date "February 26, 18862" is out of range. Please re-check against the HCA 35 originals.
+- Transcription problem: red number data loss
+    - Location: row #66 of volume #71 in sheet "vol71" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: problematic adjudication date
+    - Location: row #117 of volume #74 in sheet "vol74" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Adjudication
+    - Explanation: adjudication date was not a string and is almost certainly wrong: 2022-02-11 00:00:00
+- Transcription problem: end page before start page
+    - Location: row #49 of volume #1 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page, End Page
+    - Explanation: End page 392 is before start page 393. This is probably a typo.
+- Transcription problem: end page before start page
+    - Location: row #53 of volume #1 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page, End Page
+    - Explanation: End page 402 is before start page 407. This is probably a typo.
+- Transcription problem: assuming end page
+    - Location: row #55 of volume #1 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: End Page
+    - Explanation: The end page was not written, so it is assumed to be same as the start page (408). It is best to state this explicitly instead to avoid ambiguity.
+- Transcription problem: red number data loss
+    - Location: row #228 of volume #5 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: validation failed for adjudication date
+    - Location: row #248 of volume #5 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Adjudication
+    - Explanation:
+        - validation failure: year 181 in date "27 January 181" is out of range. Please re-check against the HCA 35 originals.
+- Transcription problem: red number data loss
+    - Location: row #279 of volume #7 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #280 of volume #7 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #281 of volume #7 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #303 of volume #8 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #305 of volume #8 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #310 of volume #9 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #327 of volume #9 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #332 of volume #9 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #335 of volume #9 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #336 of volume #9 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #338 of volume #9 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #339 of volume #9 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #346 of volume #9 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #352 of volume #9 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #359 of volume #10 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #365 of volume #10 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #389 of volume #10 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #390 of volume #10 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #407 of volume #11 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #415 of volume #11 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #416 of volume #11 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #417 of volume #11 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #419 of volume #11 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #424 of volume #11 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #425 of volume #11 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #435 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #444 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #445 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #446 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #451 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #452 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #453 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #455 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #457 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #461 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #462 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #463 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #468 of volume #12 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #469 of volume #13 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #475 of volume #13 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: validation failed for capture date
+    - Location: row #652 of volume #17 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Capture
+    - Explanation:
+        - date "Plumper" was not understood
+- Transcription problem: validation failed for adjudication date
+    - Location: row #765 of volume #20 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Adjudication
+    - Explanation:
+        - validation failure: year 183 in date "6 January 183" is out of range. Please re-check against the HCA 35 originals.
+- Transcription problem: inconsistent ocean data
+    - Location: row #833 of volume #21 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Ocean, (any highlighted columns)
+    - Explanation: Inconsistent ocean data: Ocean column value "Atlantic" (normalized form: "Atlantic") does not match ocean value "Indian" inferred from highlighting
+- Transcription problem: inconsistent ocean data
+    - Location: row #914 of volume #22 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Ocean, (any highlighted columns)
+    - Explanation: Inconsistent ocean data: Ocean column value "Indian Ocean" (normalized form: "Indian") does not match ocean value "Atlantic" inferred from highlighting
+- Transcription problem: validation failed for adjudication date
+    - Location: row #1166 of volume #31 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Adjudication
+    - Explanation:
+        - validation failure: year 183 in date "30 July 183(?)" is out of range. Please re-check against the HCA 35 originals.
+- Transcription problem: validation failed for adjudication date
+    - Location: row #1222 of volume #31 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Adjudication
+    - Explanation:
+        - validation failure: year 183 in date "24 November 183" is out of range. Please re-check against the HCA 35 originals.
+- Transcription problem: problematic capture date
+    - Location: row #1288 of volume #33 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Capture
+    - Explanation: capture date was not a string and is almost certainly wrong: 1948-11-05 00:00:00
+- Transcription problem: problematic adjudication date
+    - Location: row #1288 of volume #33 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Adjudication
+    - Explanation: adjudication date was not a string and is almost certainly wrong: 1948-12-12 00:00:00
+- Transcription problem: red number data loss
+    - Location: row #2623 of volume #63 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #2631 of volume #63 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #2632 of volume #63 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #2636 of volume #63 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #2647 of volume #63 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: end page before start page
+    - Location: row #2675 of volume #70 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page, End Page
+    - Explanation: End page 19 is before start page 38. This is probably a typo.
+- Transcription problem: problematic capture date
+    - Location: row #2702 of volume #70 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Capture
+    - Explanation: capture date was not a string and is almost certainly wrong: 2020-10-07 00:00:00
+- Transcription problem: end page before start page
+    - Location: row #2741 of volume #70 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page, End Page
+    - Explanation: End page 381 is before start page 383. This is probably a typo.
+- Transcription problem: red number data loss
+    - Location: row #2815 of volume #71 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: malformed red number(s)
+    - Location: row #3408 of volume #77 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Malformed red number set "885?" (court is "Jamaica")
+- Transcription problem: validation failed for capture date
+    - Location: row #3745 of volume #84 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Capture
+    - Explanation:
+        - validation failure: year 1974 in date "January 18, 1874. October 29, 1974." is out of range. Please re-check against the HCA 35 originals.
+- Transcription problem: assuming end page
+    - Location: row #3753 of volume #84 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: End Page
+    - Explanation: The end page was not written, so it is assumed to be same as the start page (234). It is best to state this explicitly instead to avoid ambiguity.
+- Transcription problem: assuming start page
+    - Location: row #3763 of volume #84 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page
+    - Explanation: The start page was not written, so it is assumed to be same as the end page (253). It is best to state this explicitly instead to avoid ambiguity.
+- Transcription problem: validation failed for capture date
+    - Location: row #3875 of volume #84 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Capture
+    - Explanation:
+        - validation failure: day 36 in date "November 36, 1875" is out of range. Please re-check against the HCA 35 originals.
+- Transcription problem: end page before start page
+    - Location: row #3892 of volume #84 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page, End Page
+    - Explanation: End page 451 is before start page 538. This is probably a typo.
+- Transcription problem: validation failed for capture date
+    - Location: row #3996 of volume #85 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Capture
+    - Explanation:
+        - validation failure: year 1976 in date "May 8, 1876. June 21, 1876. July 8, 1976" is out of range. Please re-check against the HCA 35 originals.
+- Transcription problem: validation failed for capture date
+    - Location: row #4030 of volume #85 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Capture
+    - Explanation:
+        - validation failure: year 1987 in date "July 8, 1987" is out of range. Please re-check against the HCA 35 originals.
+- Transcription problem: end page before start page
+    - Location: row #4085 of volume #85 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page, End Page
+    - Explanation: End page 286 is before start page 379. This is probably a typo.
+- Transcription problem: end page before start page
+    - Location: row #4220 of volume #86 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page, End Page
+    - Explanation: End page 132 is before start page 133. This is probably a typo.
+- Transcription problem: red number data loss
+    - Location: row #4503 of volume #87 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: validation failed for adjudication date
+    - Location: row #4630 of volume #87 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Date of Adjudication
+    - Explanation:
+        - validation failure: day 126 in date "June 126, 1883" is out of range. Please re-check against the HCA 35 originals.
+- Transcription problem: end page before start page
+    - Location: row #4761 of volume #87 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page, End Page
+    - Explanation: End page 536 is before start page 561. This is probably a typo.
+- Transcription problem: red number data loss
+    - Location: row #4835 of volume #87 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: red number data loss
+    - Location: row #4951 of volume #88 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: end page before start page
+    - Location: row #5026 of volume #88 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page, End Page
+    - Explanation: End page 248 is before start page 347. This is probably a typo.
+- Transcription problem: red number data loss
+    - Location: row #5073 of volume #88 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Red Number
+    - Explanation: Red number(s) is/are way too big! This usually means that multiple red numbers were entered without space separation, or Excel thought that it was a single big number. As a result, it has been unpredicably rounded and truncated, causing unrecoverable data loss. Use slashes to separate multiple red numbers instead of commas or similar.
+- Transcription problem: assuming end page
+    - Location: row #5183 of volume #88 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: End Page
+    - Explanation: The end page was not written, so it is assumed to be same as the start page (592). It is best to state this explicitly instead to avoid ambiguity.
+- Transcription problem: end page before start page
+    - Location: row #5225 of volume #88 in sheet "main" of workbook "workbooks/HCA 35 Index Merged as Separate Sheets.xlsx"
+    - Columns needing correction: Start Page, End Page
+    - Explanation: End page 464 is before start page 645. This is probably a typo.
+
+## Summary
+- 0 rows had critical errors and were discarded.
+- 282 rows were empty.
+- Successfully imported 6313 rows.
+- 83 of those rows generated warnings but were kept.
+
+### Warning Reason Summary
+- (reported 52 times) red number data loss
+- (reported 10 times) end page before start page
+- (reported 6 times) validation failed for adjudication date
+- (reported 5 times) validation failed for capture date
+- (reported 3 times) assuming end page
+- (reported 2 times) problematic adjudication date
+- (reported 2 times) inconsistent ocean data
+- (reported 2 times) problematic capture date
+- (reported 1 times) malformed red number(s)
+- (reported 1 times) assuming start page

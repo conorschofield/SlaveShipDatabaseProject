@@ -1,0 +1,35 @@
+version: '2.2'
+
+services:
+  backend:
+    command: dev
+    volumes:
+      # Mount the source in the container for hot reloading.
+      - "./backend/index.js:/usr/src/app/index.js:ro"
+  nginx:
+    # Use image that excludes frontend assets, and have a separate
+    # frontend service.
+    image: nginx:1-alpine
+    volumes:
+      - "./nginx/development.conf:/etc/nginx/nginx.conf:ro"
+      - "./case-images:/case-images"
+    # NGINX will complain if the frontend or backend are not already started.
+    depends_on:
+      frontend:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile.dev
+    # Mount the source in the container for hot reloading.
+    volumes:
+      - "./frontend/src:/usr/src/app/src"
+      - "./frontend/public:/usr/src/app/public"
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    healthcheck:
+      test: ["CMD", "wget", "http://frontend:3000", "-O", "/dev/null"]
+      timeout: 1s
+      retries: 5

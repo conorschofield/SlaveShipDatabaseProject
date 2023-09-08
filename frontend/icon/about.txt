@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Catamaran
+- Font Author: Copyright 2020 The Catamaran Project Authors (https://github.com/VanillaandCream/Catamaran-Tamil)
+- Font Source: http://fonts.gstatic.com/s/catamaran/v15/o-0bIpQoyXQa2RxT7-5B6Ryxs2E_6n1iPHjd1anXuluiLyw.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
